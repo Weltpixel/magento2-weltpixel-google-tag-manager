@@ -1,0 +1,15 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php
+$_helper = $this->helper('WeltPixel\GoogleTagManager\Helper\Data');
+$gtmCodeSnippetForHead = $_helper->getGtmCodeSnippetForHead();
+$cspNonceProvider = $_helper->getCspNonceProvider();
+
+if ($cspNonceProvider) {
+    $gtmCodeSnippetForHead = str_replace('<script', '<script nonce="' . $cspNonceProvider->generateNonce() . '" ', $gtmCodeSnippetForHead);
+}
+?>
+<?php if ($_helper->isEnabled()) : ?>
+    <?php /* @noEscape */ echo $gtmCodeSnippetForHead; ?>
+<?php endif; ?>

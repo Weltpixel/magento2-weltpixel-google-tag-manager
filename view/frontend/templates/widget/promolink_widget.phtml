@@ -1,0 +1,19 @@
+<?php
+// @codingStandardsIgnoreFile
+
+$promoId = $this->getData('promo_id');
+$promoName = $this->getData('promo_name');
+$promoCreative = $this->getData('promo_creative');
+$promoPosition = $this->getData('promo_position');
+$linkDestination = trim($this->getData('link_destination') ?? '');
+$linkDestination = ($linkDestination) ? $linkDestination : '#';
+$linkContent = $this->getData('link_content');
+$linkInNewTab = $this->getData('link_in_new_tab');
+$linkTarget = ($linkInNewTab) ? 'target="_blank"' : '';
+?>
+<a href="<?= $block->escapeUrl($linkDestination) ?>" <?= /* @noEscape */ $linkTarget ?>
+   data-track-promo-id="<?= $block->escapeHtmlAttr($promoId) ?>"
+   data-track-promo-name="<?= $block->escapeHtmlAttr($promoName) ?>"
+   data-track-promo-creative="<?= $block->escapeHtmlAttr($promoCreative) ?>"
+   data-track-promo-position="<?= $block->escapeHtmlAttr($promoPosition) ?>"
+><?= /* @noEscape */ html_entity_decode($linkContent) ?></a>
